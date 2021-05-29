@@ -1,6 +1,5 @@
 package kodlamaio.hrms.core.utilities.adapters;
 
-import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import kodlamaio.hrms.mernisService.FakeMernisService;
 public class MernisServiceAdapter implements ValidationService {
 
 	@Override
-	public boolean validateByMernis(String identityNumber, String firstName, String lastName, Date birthDate) {
+	public boolean validateByMernis(String identityNumber, String firstName, String lastName, int birthDate) {
 
 		FakeMernisService client = new FakeMernisService();
 		

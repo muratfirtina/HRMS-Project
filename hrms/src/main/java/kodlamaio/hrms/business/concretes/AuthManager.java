@@ -1,6 +1,5 @@
 package kodlamaio.hrms.business.concretes;
 
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,7 +76,7 @@ public class AuthManager implements AuthService {
 	public Result registerJobSeeker(JobSeeker jobSeeker, String confirmPassword) {
 
 		if (checkIfRealPerson(jobSeeker.getIdentityNumber(), jobSeeker.getFirstName(),
-				jobSeeker.getLastName(), jobSeeker.getBirthDate()) == false) {
+				jobSeeker.getLastName(), jobSeeker.getBirthDate().getYear()) == false) {
 			return new ErrorResult("TCKN doğrulanamadı.");
 		}
 
@@ -154,7 +153,7 @@ public class AuthManager implements AuthService {
 		return false;
 	}
 
-	private boolean checkIfRealPerson(String identityNumber, String firstName, String lastName, Date birthDate) {
+	private boolean checkIfRealPerson(String identityNumber, String firstName, String lastName, int birthDate) {
 
 		if (validationService.validateByMernis(identityNumber, firstName, lastName, birthDate)) {
 			return true;
