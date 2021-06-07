@@ -6,23 +6,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="job_titles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobTitle {
-
+@Entity
+@Table(name = "web_sites")
+public class WebSite {
+	
+	@Column(name = "id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
 	private int id;
-	
-	@Column(name="job_title")
-	private String jobTitle;
+
+	@NotBlank
+	@NotNull
+	@Column(name = "name")
+	private String name;
 }
