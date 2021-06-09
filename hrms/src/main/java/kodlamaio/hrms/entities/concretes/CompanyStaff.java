@@ -20,8 +20,6 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "user_id")
 public class CompanyStaff extends User{
 	
-	//@Column(name = "user_id")
-	//private int staffId;
 	
 	@Column(name = "first_name")
 	private String name;

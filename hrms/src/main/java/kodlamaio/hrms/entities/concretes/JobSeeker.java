@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -40,8 +38,6 @@ public class JobSeeker extends User{
 	@Column(name= "birth_date")
 	private LocalDate birthDate;
 	
-	@OneToOne(mappedBy = "jobseeker", fetch = FetchType.EAGER)
-	private JobSeekerCv jobSeekerCv;
 
 	
 	public JobSeeker(int id, @NotBlank @Email @Size(max = 100) String email, @NotBlank @Size(max = 100) String password,

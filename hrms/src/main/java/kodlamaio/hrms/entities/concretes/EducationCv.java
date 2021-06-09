@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.PastOrPresent;
 
@@ -20,12 +25,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "cv_educations")
 public class EducationCv {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int educationId;
 	
-	
-	@Column(name = "cv_id")
-	private int cvId;
+	@ManyToOne
+	@JoinColumn(name = "cv_id")
+	private JobSeekerCv jobSeekerCv;
 	
 	
 	@Column(name = "school_name")
@@ -42,6 +49,7 @@ public class EducationCv {
 	@PastOrPresent
 	@Column(name = "graduation_date")
 	private LocalDate graduationDate;
+	
 	
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private LocalDateTime createdAt = LocalDateTime.now();

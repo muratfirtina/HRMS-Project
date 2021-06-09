@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,14 +23,18 @@ import lombok.NoArgsConstructor;
 @Table(name = "job_seeker_websites")
 public class JobSeekerWebsite {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int jobSeekerWebsiteId;
 	
-	@Column(name = "cv_id")
-	private int cvId;
+	@ManyToOne
+	@JoinColumn(name = "cv_id")
+	private JobSeekerCv jobSeekerCv;
 	
-	@Column(name = "website_id")
-	private int websiteId;
+	@ManyToOne
+	@JoinColumn(name = "website_id")
+	private WebSite webSite;
 	
 	@Column(name = "address")
 	private String address;

@@ -5,13 +5,19 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
@@ -19,14 +25,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Table(name = "job_seeker_cvs")
 public class JobSeekerCv {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int jobSeekerCvId;
 	
+	@OneToOne()
 	@Column(name = "job_seeker_id")
-	private int jobSeekerId;
+	private JobSeeker jobSeeker;
 	
 	@Column(name = "cover_letter")
 	private String coverLetter;
@@ -37,4 +47,27 @@ public class JobSeekerCv {
 	@JsonIgnore()
 	@OneToMany(mappedBy = "jobSeekerCV")
 	private List<LanguageCv> languageCvs;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "jobSeekerCv" )
+	private List<EducationCv> educationCvs;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "jobSeekerCV")
+	private List<ExperienceCv> experienceCvs;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "jobSeekerCV")
+	private List<SkillCv> skillCvs;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "jobSeekerCV")
+	private List<JobSeekerWebsite> jobSeekerWebsites;
+	
+	@JsonIgnore()
+	@OneToOne(mappedBy = "jobSeekerCV" , optional = false, fetch=FetchType.LAZY)
+	private JobSeekerImage jobSeekerImage;
+	
+	
+	
 }

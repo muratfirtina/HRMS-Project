@@ -15,12 +15,14 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Table(name = "job_adverts")
 public class JobAdvert {
 
@@ -53,7 +55,7 @@ public class JobAdvert {
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_TIMESTAMP")
 	private LocalDateTime createdAt = LocalDateTime.now();
 	
-	@Column(name = "")
+	@Column(name = "published_at")
 	private LocalDate publishedAt;
 	
 	@NotNull

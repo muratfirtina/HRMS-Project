@@ -29,6 +29,7 @@ import lombok.ToString;
 @Table(name = "job_positions")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAdverts"})
 public class JobPosition {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

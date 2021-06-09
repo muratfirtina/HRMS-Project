@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.PastOrPresent;
 
@@ -20,15 +25,18 @@ import lombok.NoArgsConstructor;
 @Table(name = "cv_experiences")
 public class ExperienceCv {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int experienceId;
 	
+	@ManyToOne
+	@JoinColumn(name = "cv_id")
+	private JobSeekerCv	jobSeekerCv;
 	
-	@Column(name = "cv_id")
-	private int cvId;
-	
-	@Column(name = "job_position_id")
-	private int jobPositionId;
+	@ManyToOne
+	@JoinColumn(name = "job_position_id")
+	private JobPosition jobPosition;
 	
 	
 	@Column(name = "workplace_name")
