@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "cv_languages")
 @EqualsAndHashCode
-public class LanguageCv {
+public class JobSeekerLanguageCv {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

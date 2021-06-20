@@ -8,7 +8,6 @@ import kodlamaio.hrms.business.abstracts.AuthService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
 import kodlamaio.hrms.business.abstracts.UserService;
-import kodlamaio.hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.hrms.core.utilities.adapters.ValidationService;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -16,7 +15,6 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.verification.VerificationService;
 import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
-import kodlamaio.hrms.entities.concretes.VerificationCode;
 
 @Service
 public class AuthManager implements AuthService {
@@ -26,20 +24,19 @@ public class AuthManager implements AuthService {
 	private JobSeekerService jobSeekerService;
 	private VerificationService verificationService;
 	private ValidationService validationService;
-	private VerificationCodeService verificationCodeService;
 
 	
 	@Autowired
 	public AuthManager(UserService userService, EmployerService employerService, JobSeekerService jobSeekerService,
-			VerificationService verificationService, ValidationService validationService,
-			VerificationCodeService verificationCodeService) {
+			VerificationService verificationService, ValidationService validationService
+			) {
 		super();
 		this.userService = userService;
 		this.employerService = employerService;
 		this.jobSeekerService = jobSeekerService;
 		this.verificationService = verificationService;
 		this.validationService = validationService;
-		this.verificationCodeService = verificationCodeService;
+		
 	}
 
 	@Override
@@ -50,7 +47,7 @@ public class AuthManager implements AuthService {
 			return new ErrorResult("Lütfen bilgileri eksiksiz olarak giriniz");
 		}
 
-		if (!checkIfEqualEmailAndDomain(employer.getEmail(), employer.getWebAddress())) {
+		if (!checkIfEqualEmailAndDomain(employer.getEmail(), employer.getWebsite())) {
 
 			return new ErrorResult("Hatalı mail adresi.");
 		}
@@ -106,7 +103,7 @@ public class AuthManager implements AuthService {
 
 	private boolean checkIfNullInfoForEmployer(Employer employer) {
 
-		if (employer.getCompanyName() != null && employer.getWebAddress() != null && employer.getEmail() != null
+		if (employer.getCompanyName() != null && employer.getWebsite() != null && employer.getEmail() != null
 				&& employer.getPhoneNumber() != null && employer.getPassword() != null) {
 
 			return true;

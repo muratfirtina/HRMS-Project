@@ -46,7 +46,7 @@ public class JobSeekerCv {
 	
 	@JsonIgnore()
 	@OneToMany(mappedBy = "jobSeekerCV")
-	private List<LanguageCv> languageCvs;
+	private List<JobSeekerLanguageCv> languageCvs;
 	
 	@JsonIgnore()
 	@OneToMany(mappedBy = "jobSeekerCv" )
@@ -58,7 +58,7 @@ public class JobSeekerCv {
 	
 	@JsonIgnore()
 	@OneToMany(mappedBy = "jobSeekerCV")
-	private List<SkillCv> skillCvs;
+	private List<JobSeekerSkillCv> skillCvs;
 	
 	@JsonIgnore()
 	@OneToMany(mappedBy = "jobSeekerCV")

@@ -7,20 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kodlamaio.hrms.business.abstracts.CompanyStaffService;
 import kodlamaio.hrms.business.abstracts.EmployeeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.entities.concretes.CompanyStaff;
 import kodlamaio.hrms.entities.concretes.Employee;
 
 @RestController
 @RequestMapping("/api/employees")
-public class EmployeesController {
+public class CompanyStaffsController {
 
-	private EmployeeService employeeService;
+	private CompanyStaffService companyStaffService;
 
 	@Autowired
-	public EmployeesController(EmployeeService employeeService) {
+	public CompanyStaffsController(CompanyStaffService companyStaffService) {
 		super();
-		this.employeeService = employeeService;
+		this.companyStaffService = companyStaffService;
 	}
 	
 
@@ -45,7 +47,7 @@ public class EmployeesController {
 //	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Employee>> getAll(){
-		return this.employeeService.getAll();
+	public DataResult<List<CompanyStaff>> getAll(){
+		return this.companyStaffService.getAll();
 	}
 }

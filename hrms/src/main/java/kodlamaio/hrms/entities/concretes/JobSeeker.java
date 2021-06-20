@@ -39,7 +39,6 @@ public class JobSeeker extends User{
 	private LocalDate birthDate;
 	
 
-	
 	public JobSeeker(int id, @NotBlank @Email @Size(max = 100) String email, @NotBlank @Size(max = 100) String password,
 			String firstName, String lastName, String identityNumber, LocalDate birthDate) {
 		super(id, email, password);
@@ -48,4 +47,5 @@ public class JobSeeker extends User{
 		this.identityNumber = identityNumber;
 		this.birthDate = birthDate;
 	}
+	
 }

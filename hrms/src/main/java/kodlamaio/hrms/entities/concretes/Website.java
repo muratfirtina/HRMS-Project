@@ -1,15 +1,13 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,27 +15,20 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "web_sites")
 @EqualsAndHashCode
-@Table(name = "cv_skills")
-public class SkillCv {
+public class Website {
 	
+	@Column(name = "id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int skillId;
-	
-	@ManyToOne
-	@JoinColumn(name = "cv_id")
-	private JobSeekerCv jobSeekerCv;
-	
-	
-	@Column(name = "skill_name")
-	private String schoolName;
-	
-	
-	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
-	private LocalDateTime createdAt = LocalDateTime.now();
+	private int id;
+
+	@NotBlank
+	@NotNull
+	@Column(name = "name")
+	private String name;
 }

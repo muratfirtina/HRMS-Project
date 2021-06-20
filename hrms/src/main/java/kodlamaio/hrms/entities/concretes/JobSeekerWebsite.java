@@ -34,7 +34,7 @@ public class JobSeekerWebsite {
 	
 	@ManyToOne
 	@JoinColumn(name = "website_id")
-	private WebSite webSite;
+	private Website webSite;
 	
 	@Column(name = "address")
 	private String address;
